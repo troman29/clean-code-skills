@@ -1,5 +1,5 @@
 ---
-name: clean-tests
+name: typescript-clean-tests
 description: Use when writing, fixing, editing, or refactoring TypeScript tests. Enforces Clean Code principles—fast tests, boundary coverage, one assert per test.
 when_to_use: |
   Also trigger on: slow or flaky tests, `test.skip`/`it.skip`/`.todo` without a clear reason, `test.only` left in committed code, tests that only cover the happy path, tests with multiple assertions about different concepts, missing boundary cases (empty arrays, off-by-one, page zero), or asks about "coverage gap" / "edge case".

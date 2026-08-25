@@ -43,14 +43,14 @@ Use the master skill for comprehensive coverage, or individual skills for target
 Pick one track and copy only that track's skills:
 
 > [!WARNING]
-> Install only one language track per skills directory. Python and TypeScript tracks reuse the same skill names (`boy-scout`, `clean-functions`, etc.). Installing both together can make the agent load conflicting instructions and behave inconsistently.
+> Both tracks can share one skills directory: every skill is prefixed with its language, so nothing collides. The cost is context — an agent carries the description of every installed skill at all times, so both tracks mean 14 descriptions instead of 7. Install one track if you only work in one language.
 
 ```bash
 # Python track
-cp -r skills/python/* <YOUR_SKILLS_DIR>/
+cp -r skills/python-* <YOUR_SKILLS_DIR>/
 
 # TypeScript track
-cp -r skills/typescript/* <YOUR_SKILLS_DIR>/
+cp -r skills/typescript-* <YOUR_SKILLS_DIR>/
 ```
 
 ### The Boy Scout Rule
@@ -65,7 +65,7 @@ You don't have to make code perfect—just **a little bit better** with every to
 
 ## Installation
 
-Install only one language track per destination directory (`.agent/skills`, `.claude/skills`, `~/.claude/skills`, etc.).
+Copy a track into any skills directory (`.agent/skills`, `.claude/skills`, `~/.claude/skills`, etc.). Both tracks may live side by side — the language prefix keeps them apart.
 
 ### Google Antigravity
 
@@ -75,10 +75,10 @@ Install only one language track per destination directory (`.agent/skills`, `.cl
 # From your project root
 mkdir -p .agent/skills
 # Python track
-cp -r skills/python/* .agent/skills/
+cp -r skills/python-* .agent/skills/
 
 # TypeScript track
-cp -r skills/typescript/* .agent/skills/
+cp -r skills/typescript-* .agent/skills/
 ```
 
 **Global** (applies to all projects):
@@ -86,10 +86,10 @@ cp -r skills/typescript/* .agent/skills/
 ```bash
 mkdir -p ~/.gemini/antigravity/skills
 # Python track
-cp -r skills/python/* ~/.gemini/antigravity/skills/
+cp -r skills/python-* ~/.gemini/antigravity/skills/
 
 # TypeScript track
-cp -r skills/typescript/* ~/.gemini/antigravity/skills/
+cp -r skills/typescript-* ~/.gemini/antigravity/skills/
 ```
 
 **Quick install** (global, one command) — pick one track:
@@ -98,7 +98,7 @@ cp -r skills/typescript/* ~/.gemini/antigravity/skills/
 # Python track
 git clone https://github.com/ertugrul-dmr/clean-code-skills.git /tmp/clean-code-skills && \
 mkdir -p ~/.gemini/antigravity/skills && \
-cp -r /tmp/clean-code-skills/skills/python/* ~/.gemini/antigravity/skills/ && \
+cp -r /tmp/clean-code-skills/skills/python-* ~/.gemini/antigravity/skills/ && \
 rm -rf /tmp/clean-code-skills
 ```
 
@@ -106,7 +106,7 @@ rm -rf /tmp/clean-code-skills
 # TypeScript track
 git clone https://github.com/ertugrul-dmr/clean-code-skills.git /tmp/clean-code-skills && \
 mkdir -p ~/.gemini/antigravity/skills && \
-cp -r /tmp/clean-code-skills/skills/typescript/* ~/.gemini/antigravity/skills/ && \
+cp -r /tmp/clean-code-skills/skills/typescript-* ~/.gemini/antigravity/skills/ && \
 rm -rf /tmp/clean-code-skills
 ```
 
@@ -118,10 +118,10 @@ rm -rf /tmp/clean-code-skills
 # From your project root
 mkdir -p .claude/skills
 # Python track
-cp -r skills/python/* .claude/skills/
+cp -r skills/python-* .claude/skills/
 
 # TypeScript track
-cp -r skills/typescript/* .claude/skills/
+cp -r skills/typescript-* .claude/skills/
 ```
 
 **Global**:
@@ -129,10 +129,10 @@ cp -r skills/typescript/* .claude/skills/
 ```bash
 mkdir -p ~/.claude/skills
 # Python track
-cp -r skills/python/* ~/.claude/skills/
+cp -r skills/python-* ~/.claude/skills/
 
 # TypeScript track
-cp -r skills/typescript/* ~/.claude/skills/
+cp -r skills/typescript-* ~/.claude/skills/
 ```
 
 **Quick install** (global, one command) — pick one track:
@@ -141,7 +141,7 @@ cp -r skills/typescript/* ~/.claude/skills/
 # Python track
 git clone https://github.com/ertugrul-dmr/clean-code-skills.git /tmp/clean-code-skills && \
 mkdir -p ~/.claude/skills && \
-cp -r /tmp/clean-code-skills/skills/python/* ~/.claude/skills/ && \
+cp -r /tmp/clean-code-skills/skills/python-* ~/.claude/skills/ && \
 rm -rf /tmp/clean-code-skills
 ```
 
@@ -149,7 +149,7 @@ rm -rf /tmp/clean-code-skills
 # TypeScript track
 git clone https://github.com/ertugrul-dmr/clean-code-skills.git /tmp/clean-code-skills && \
 mkdir -p ~/.claude/skills && \
-cp -r /tmp/clean-code-skills/skills/typescript/* ~/.claude/skills/ && \
+cp -r /tmp/clean-code-skills/skills/typescript-* ~/.claude/skills/ && \
 rm -rf /tmp/clean-code-skills
 ```
 
@@ -170,9 +170,9 @@ If you expect to update often, symlink instead of copy:
 
 ```bash
 git clone https://github.com/ertugrul-dmr/clean-code-skills.git ~/src/clean-code-skills
-# Pick one track — swap `python` for `typescript` to use the TS track.
-cd ~/src/clean-code-skills/skills/python
-for d in */; do ln -sfn "$PWD/${d%/}" "$HOME/.claude/skills/${d%/}"; done
+# Pick a track — swap `python-*` for `typescript-*`, or use `*/` to link both.
+cd ~/src/clean-code-skills/skills
+for d in python-*/; do ln -sfn "$PWD/${d%/}" "$HOME/.claude/skills/${d%/}"; done
 ```
 
 Then `git pull` in `~/src/clean-code-skills` refreshes every skill.
@@ -388,10 +388,10 @@ Don't need all 66 rules? Copy only the skills you want:
 
 ```bash
 # Just function rules
-cp -r skills/python/clean-functions ~/.gemini/antigravity/skills/
+cp -r skills/python-clean-functions ~/.gemini/antigravity/skills/
 
 # Just comment rules  
-cp -r skills/typescript/clean-comments ~/.claude/skills/
+cp -r skills/typescript-clean-comments ~/.claude/skills/
 ```
 
 ### Extending Skills
@@ -420,7 +420,7 @@ This repository does not ship a `scripts/` folder or lint scripts by default.
 If you want stricter enforcement, create your own scripts inside the skill folder.
 
 ```
-skills/python/python-clean-code/
+skills/python-python-clean-code/
 ├── SKILL.md
 └── scripts/
     └── lint.py
