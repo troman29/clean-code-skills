@@ -1,5 +1,5 @@
 ---
-name: boy-scout
+name: python-boy-scout
 description: Use when fixing, editing, changing, debugging, or working with any Python code. Applies the Boy Scout Rule—always leave code cleaner than you found it. Orchestrates other clean code skills as needed.
 when_to_use: |
   Also trigger on: "while you're at it", "any quick wins", "improve this a bit", "anything else obviously wrong", or when editing existing Python and an adjacent small cleanup is possible alongside the asked-for change.
@@ -27,17 +27,17 @@ If we all followed this simple rule:
 Every time you touch code, look for **at least one small improvement**:
 
 ### Quick Wins (Do These Immediately)
-- Rename a poorly named variable → triggers `clean-names`
-- Delete a redundant comment → triggers `clean-comments`
+- Rename a poorly named variable → triggers `python-clean-names`
+- Delete a redundant comment → triggers `python-clean-comments`
 - Remove dead code or unused imports
 - Replace a magic number with a named constant
 - Extract a deeply nested block into a well-named function
 
 ### Deeper Improvements (When Time Allows)
-- Split a function that does multiple things → triggers `clean-functions`
-- Remove duplication (DRY) → triggers `clean-general`
+- Split a function that does multiple things → triggers `python-clean-functions`
+- Remove duplication (DRY) → triggers `python-clean-general`
 - Add missing boundary checks
-- Improve test coverage → triggers `clean-tests`
+- Improve test coverage → triggers `python-clean-tests`
 
 ## The Rule in Practice
 
@@ -81,11 +81,11 @@ This skill coordinates with specialized skills based on what you're doing:
 | Task | Trigger Skill |
 |------|---------------|
 | Writing/reviewing any Python | `python-clean-code` (master) |
-| Naming variables, functions, classes | `clean-names` |
-| Writing or editing comments | `clean-comments` |
-| Creating or refactoring functions | `clean-functions` |
-| Reviewing code quality | `clean-general` |
-| Writing or reviewing tests | `clean-tests` |
+| Naming variables, functions, classes | `python-clean-names` |
+| Writing or editing comments | `python-clean-comments` |
+| Creating or refactoring functions | `python-clean-functions` |
+| Reviewing code quality | `python-clean-general` |
+| Writing or reviewing tests | `python-clean-tests` |
 
 ## The Mindset
 
